@@ -7,11 +7,23 @@ export default function Section({ id, title, desc, items }) {
         <h2 className="text-3xl font-bold text-dark mb-4">{title}</h2>
         <p className="text-dark text-lg mb-8">{desc}</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="space-y-6">
           {items.map((item, idx) => (
-            <div key={idx} className="bg-light shadow-sm rounded p-6 hover:shadow-md transition">
+            <div
+              key={idx}
+              className="bg-light shadow-sm rounded p-6 hover:shadow-md transition"
+            >
               <h3 className="text-xl font-semibold mb-2 text-primary">{item.title}</h3>
-              <p className="text-dark">{item.text}</p>
+              <p className="text-dark mb-2">{item.text}</p>
+
+              {/* Render sub-items if they exist */}
+              {item.subItems && item.subItems.length > 0 && (
+                <ul className="list-disc list-inside mt-2 text-dark">
+                  {item.subItems.map((sub, subIdx) => (
+                    <li key={subIdx}>{sub}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
