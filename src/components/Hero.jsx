@@ -1,17 +1,13 @@
 import React from "react";
 
-export default function Hero() {
+export default function Hero({ children }) {
   return (
-    <section className="bg-light text-dark min-h-screen flex flex-col items-center justify-center px-6 text-center">
-      <h1 className="text-primary font-extrabold text-5xl md:text-6xl mb-4">
-        Ujana na Ujuzi
+    <section className="text-center py-12 bg-red-50 rounded-lg shadow-md">
+      <h1 className="text-4xl md:text-5xl font-bold text-red-600">
+        Welcome to Ujana na Ujuzi
       </h1>
-      <p className="text-dark text-lg md:text-xl mb-6">
-        Civic Education • Mental Health • Environmental Conservation
-      </p>
-      <button className="bg-primary text-light font-bold px-6 py-3 rounded hover:bg-dark transition">
-        Get Involved
-      </button>
+      {/* 👇 This makes tagline (or any children) show */}
+      {children && <div className="mt-4">{children}</div>}
     </section>
   );
 }
