@@ -1,94 +1,112 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import Hero from "./components/Hero.jsx";
-import Section from "./components/Section.jsx";
 import ContactForm from "./components/ContactForm.jsx";
 import Footer from "./components/Footer.jsx";
 import MobileMenu from "./components/MobileMenu.jsx";
 
-// --- Civic Education Section Data ---
+// --- Animated Collapsible Section ---
+const CollapsibleSection = ({ title, summary, items }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState("0px");
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+    setHeight(!isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
+  };
+
+  return (
+    <div className="border rounded-md p-6 bg-white shadow-md transition-all duration-300">
+      <button
+        className="w-full text-left flex justify-between items-center text-xl font-semibold text-primary hover:text-red-700 transition-colors"
+        onClick={toggleOpen}
+      >
+        {title}
+        <span>{isOpen ? "▲" : "▼"}</span>
+      </button>
+
+      <p className="mt-2 text-gray-700">{summary}</p>
+
+      <div
+        ref={contentRef}
+        style={{ maxHeight: height }}
+        className="overflow-hidden transition-max-height duration-500 ease-in-out mt-4"
+      >
+        {items.map((item, idx) => (
+          <div key={idx} className="pl-4 mb-4">
+            <h4 className="font-semibold">{item.title}</h4>
+            <p className="text-gray-700">{item.text}</p>
+            {item.subItems && (
+              <ul className="list-disc list-inside mt-1 text-gray-600">
+                {item.subItems.map((sub, i) => (
+                  <li key={i}>{sub}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// --- Data ---
 const civicEducationData = {
-  id: "civic",
   title: "Civic Engagement",
-  desc: "Ujana na Ujuzi empowers youth to actively participate in governance and community decision-making through training, policy engagement, and inclusion programs.",
+  summary: "Empowering youth to participate in governance and community decision-making.",
   items: [
     {
       title: "Standing Commission",
       text: "The inaugural implementing body was appointed on an interim basis, tasked with laying the foundation for institutional structures, procedures, and project evaluation.",
-      subItems: [
-        "Robbin Karani",
-        "Derrick Kubai",
-        "Nancy Wambui",
-        "Lucy Nyambura",
-        "Brian Chacha"
-      ]
+      subItems: ["Robbin Karani","Derrick Kubai","Nancy Wambui","Lucy Nyambura","Brian Chacha"]
     },
     {
       title: "Activities Report: Youth Policy for Nairobi City County",
-      text: "Ujana na Ujuzi volunteers registered at the Onestop Youth Resource and Information Centre (managed by Nairobi City County). Interim office bearers participated in various Youth programmes. The Chairman was nominated to the Technical Working Group on the Nairobi City County Youth Policy."
+      text: "Ujana na Ujuzi volunteers registered at the Onestop Youth Resource and Information Centre and participated in Youth programmes. The Chairman was nominated to the Technical Working Group."
     },
     {
       title: "Scope & Partners",
-      text: "The project included voluntarism and sponsorship from NGOs such as County Governance Watch, Youth Alive Kenya, and Pamoja Trust. Key activities included Technical Working Group meetings, policy workshops, and the official launch of the policy document at Charter Hall, Nairobi."
-    },
-    {
-      title: "Youth Inclusion & Ward-Based Participation in Zimmerman",
-      text: "To ensure meaningful youth participation in governance, the interim standing commissioners focused on Zimmerman Ward, where most CBO members reside. Activities spanned January 22nd to November 16th, 2022, promoting youth engagement and public participation."
+      text: "Volunteering and sponsorship from NGOs such as County Governance Watch, Youth Alive Kenya, and Pamoja Trust. Key activities included workshops and the official launch at Charter Hall, Nairobi."
     }
   ]
 };
 
-// --- Mental Health Section Data ---
 const mentalHealthData = {
-  id: "mental",
   title: "Mental Health Wellbeing",
-  desc: "Ujana na Ujuzi addresses youth mental health challenges through training, awareness, and advocacy programs.",
+  summary: "Addressing youth mental health challenges through training, awareness, and advocacy programs.",
   items: [
     {
       title: "Standing Commission",
-      text: "The inaugural implementing body was appointed on an interim basis, tasked with laying the foundation for institutional structures, procedures, and project evaluation.",
-      subItems: [
-        "Robbin Karani",
-        "Derrick Kubai",
-        "Charity Maina",
-        "Ramadhan Omar",
-        "Nellius Wanja"
-      ]
+      text: "The inaugural implementing body was appointed on an interim basis for project evaluation.",
+      subItems: ["Robbin Karani","Derrick Kubai","Charity Maina","Ramadhan Omar","Nellius Wanja"]
     },
     {
-      title: "Activities Report: Mental Health Awareness & Training",
-      text: "Mental health challenges are significant among Kenyan youth, including high rates of depression and anxiety, exacerbated by socioeconomic factors and stigma. Ujana na Ujuzi runs programs to train members as advocates and trainers of advocates."
+      title: "Activities Report",
+      text: "Training members as advocates and trainers of advocates to tackle depression and anxiety among youth."
     },
     {
       title: "Scope & Partnerships",
-      text: "The project involves discussions, workshops, and short courses aligned to the organization's mission and vision. Main partners: YMCA and Nivishe Initiative. Derrick and Nellius undertook a mental health course at Nivishe and now train other members."
+      text: "Includes workshops, discussions, and short courses. Main partners: YMCA and Nivishe Initiative."
     }
   ]
 };
 
-// --- Environmental Conservation Section Data ---
 const environmentData = {
-  id: "env",
   title: "Climate Action & Environmental Conservation",
-  desc: "Ujana na Ujuzi implements climate action initiatives, including river rehabilitation, pollution control, and community awareness programs.",
+  summary: "Implementing initiatives like river rehabilitation, pollution control, and community awareness programs.",
   items: [
     {
       title: "Standing Commission",
-      text: "The inaugural implementing body was appointed on an interim basis, tasked with laying the foundation for institutional structures, procedures, and project evaluation.",
-      subItems: [
-        "Robbin Karani",
-        "Derrick Kubai",
-        "Emmah Njeri",
-        "Faith Nyambura",
-        "Eva Muasya"
-      ]
+      text: "Appointed on an interim basis to lay foundations for institutional structures.",
+      subItems: ["Robbin Karani","Derrick Kubai","Emmah Njeri","Faith Nyambura","Eva Muasya"]
     },
     {
-      title: "Activities Report: Adopt a River Initiative (Gathara-ini River)",
-      text: "This initiative, in partnership with NEMA, focuses on public participation, awareness, knowledge transfer, advocacy, sustainable solid waste management, and rehabilitation of riverbanks. The Nairobi River Basin, including the Gathara-ini River, passes through urban settlements and faces challenges of pollution from various sources."
+      title: "Activities Report: Adopt a River Initiative",
+      text: "Partnership with NEMA focusing on awareness, advocacy, waste management, and riverbank rehabilitation."
     },
     {
       title: "Scope & Implementation",
-      text: "Activities include courtesy visits, peer learning on youth empowerment, site visits, and feasibility studies for program implementation. The project aims to improve sanitation, enforce pollution control, and promote sustainable land management along the river basin."
+      text: "Courtesy visits, peer learning, site visits, and feasibility studies to improve sanitation and enforce pollution control."
     }
   ]
 };
@@ -104,21 +122,9 @@ export default function App() {
           </a>
 
           <nav className="hidden md:flex gap-6 items-center">
-            <a href="#civic" className="hover:text-primary transition-colors">
-              Civic Education
-            </a>
-            <a href="#mental" className="hover:text-primary transition-colors">
-              Mental Health
-            </a>
-            <a href="#env" className="hover:text-primary transition-colors">
-              Environment
-            </a>
-            <a
-              href="#contact"
-              className="bg-primary text-light px-4 py-2 rounded hover:bg-red-700 transition"
-            >
-              Contact
-            </a>
+            <a href="#civic" className="hover:text-primary transition-colors">Civic</a>
+            <a href="#mental" className="hover:text-primary transition-colors">Mental</a>
+            <a href="#env" className="hover:text-primary transition-colors">Environment</a>
           </nav>
 
           <MobileMenu />
@@ -126,40 +132,25 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 max-w-6xl mx-auto px-6 py-12 space-y-8">
         <Hero />
 
-        <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
-          {/* Civic Section */}
-          <Section
-            id={civicEducationData.id}
-            title={civicEducationData.title}
-            desc={civicEducationData.desc}
-            items={civicEducationData.items}
-          />
+        <section id="civic">
+          <CollapsibleSection {...civicEducationData} />
+        </section>
 
-          {/* Mental Health Section */}
-          <Section
-            id={mentalHealthData.id}
-            title={mentalHealthData.title}
-            desc={mentalHealthData.desc}
-            items={mentalHealthData.items}
-          />
+        <section id="mental">
+          <CollapsibleSection {...mentalHealthData} />
+        </section>
 
-          {/* Environmental Section */}
-          <Section
-            id={environmentData.id}
-            title={environmentData.title}
-            desc={environmentData.desc}
-            items={environmentData.items}
-          />
+        <section id="env">
+          <CollapsibleSection {...environmentData} />
+        </section>
 
-          <ContactForm id="contact" />
-        </div>
+        <ContactForm id="contact" />
       </main>
 
       <Footer />
     </div>
   );
 }
-
