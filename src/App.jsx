@@ -5,7 +5,7 @@ import Footer from "./components/Footer.jsx";
 import MobileMenu from "./components/MobileMenu.jsx";
 
 // --- Animated Collapsible Section with Enhanced Styling ---
-const CollapsibleSection = ({ title, summary, items }) => {
+const CollapsibleSection = ({ title, summary, highlights, icon, items }) => {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
   const [height, setHeight] = useState("0px");
@@ -17,16 +17,31 @@ const CollapsibleSection = ({ title, summary, items }) => {
 
   return (
     <div className="border-2 border-red-500 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-shadow duration-300">
-      <button
-        className="w-full text-left flex justify-between items-center text-2xl font-bold text-red-600 hover:text-red-800 transition-colors"
-        onClick={toggleOpen}
-      >
-        {title}
-        <span className="ml-2">{isOpen ? "▲" : "▼"}</span>
-      </button>
+      {/* Title + Icon */}
+      <div className="flex items-center mb-2">
+        {icon && <span className="text-red-600 text-2xl mr-2">{icon}</span>}
+        <button
+          className="w-full text-left flex justify-between items-center text-2xl font-bold text-red-600 hover:text-red-800 transition-colors"
+          onClick={toggleOpen}
+        >
+          {title}
+          <span className="ml-2">{isOpen ? "▲" : "▼"}</span>
+        </button>
+      </div>
 
+      {/* Summary */}
       <p className="mt-2 text-gray-800 text-lg">{summary}</p>
 
+      {/* Highlights */}
+      {highlights && (
+        <ul className="list-disc list-inside text-gray-600 mt-2">
+          {highlights.map((h, idx) => (
+            <li key={idx}>{h}</li>
+          ))}
+        </ul>
+      )}
+
+      {/* Expanded Content */}
       <div
         ref={contentRef}
         style={{ maxHeight: height }}
@@ -54,6 +69,8 @@ const CollapsibleSection = ({ title, summary, items }) => {
 const civicEducationData = {
   title: "Civic Engagement",
   summary: "Empowering youth to participate in governance and community decision-making.",
+  highlights: ["Youth Participation Programs", "Workshops & Trainings", "Policy Advocacy"],
+  icon: "🏛️",
   items: [
     {
       title: "Standing Commission",
@@ -74,6 +91,8 @@ const civicEducationData = {
 const mentalHealthData = {
   title: "Mental Health Wellbeing",
   summary: "Addressing youth mental health challenges through training, awareness, and advocacy programs.",
+  highlights: ["Peer-support groups", "Awareness campaigns", "Professional referrals"],
+  icon: "🧠",
   items: [
     {
       title: "Standing Commission",
@@ -94,6 +113,8 @@ const mentalHealthData = {
 const environmentData = {
   title: "Climate Action & Environmental Conservation",
   summary: "Implementing initiatives like river rehabilitation, pollution control, and community awareness programs.",
+  highlights: ["Adopt-a-River Initiatives", "Waste Management", "Environmental Education"],
+  icon: "🌿",
   items: [
     {
       title: "Standing Commission",
@@ -133,8 +154,14 @@ export default function App() {
 
       {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto px-6 py-12 space-y-8">
-        <Hero />
+        {/* Hero Section */}
+        <Hero>
+          <p className="mt-4 text-lg text-gray-700">
+            Empowering Youth for Civic, Mental, and Environmental Impact
+          </p>
+        </Hero>
 
+        {/* Collapsible Sections */}
         <section id="civic">
           <CollapsibleSection {...civicEducationData} />
         </section>
