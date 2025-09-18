@@ -7,24 +7,41 @@ import MobileMenu from "./components/MobileMenu.jsx";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col text-gray-800">
-      <header className="bg-white shadow-sm sticky top-0 z-20">
+    <div className="min-h-screen flex flex-col bg-light text-dark">
+      {/* Header / Nav */}
+      <header className="bg-light shadow-sm sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="text-2xl font-extrabold text-green-700">Ujana na Ujuzi</a>
+          <a href="#" className="text-2xl font-bold text-primary">
+            Ujana na Ujuzi
+          </a>
+
           <nav className="hidden md:flex gap-6 items-center">
-            <a href="#civic" className="hover:text-green-600">Civic Education</a>
-            <a href="#mental" className="hover:text-green-600">Mental Health</a>
-            <a href="#env" className="hover:text-green-600">Environment</a>
-            <a href="#contact" className="bg-green-600 text-white px-4 py-2 rounded">Contact</a>
+            <a href="#civic" className="hover:text-primary transition-colors">
+              Civic Education
+            </a>
+            <a href="#mental" className="hover:text-primary transition-colors">
+              Mental Health
+            </a>
+            <a href="#env" className="hover:text-primary transition-colors">
+              Environment
+            </a>
+            <a
+              href="#contact"
+              className="bg-primary text-light px-4 py-2 rounded hover:bg-red-700 transition"
+            >
+              Contact
+            </a>
           </nav>
+
           <MobileMenu />
         </div>
       </header>
 
+      {/* Main Content */}
       <main className="flex-1">
         <Hero />
 
-        <div className="max-w-6xl mx-auto px-6 py-12 space-y-10">
+        <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
           <Section
             id="civic"
             title="Civic Education"
@@ -32,7 +49,7 @@ export default function App() {
             items={[
               { title: "Community Workshops", text: "Local sessions on rights, governance, civic responsibilities." },
               { title: "Schools Program", text: "Youth-focused civic modules and debate clubs." },
-              { title: "Advocacy", text: "Community mobilization around local issues." }
+              { title: "Advocacy", text: "Community mobilization around local issues." },
             ]}
           />
 
@@ -43,7 +60,7 @@ export default function App() {
             items={[
               { title: "Peer Support", text: "Safe spaces to share and heal." },
               { title: "Awareness", text: "Campaigns to reduce stigma." },
-              { title: "Referrals", text: "Linking to counselors and clinics." }
+              { title: "Referrals", text: "Linking to counselors and clinics." },
             ]}
           />
 
@@ -54,7 +71,7 @@ export default function App() {
             items={[
               { title: "Tree Planting", text: "Local greening initiatives." },
               { title: "Cleanups", text: "Community waste collection events." },
-              { title: "Education", text: "Hands-on environmental lessons." }
+              { title: "Education", text: "Hands-on environmental lessons." },
             ]}
           />
 

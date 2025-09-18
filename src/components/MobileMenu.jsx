@@ -11,11 +11,11 @@ export default function MobileMenu() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow">
-          <a className="block px-4 py-2" href="#civic" onClick={() => setOpen(false)}>Civic Education</a>
-          <a className="block px-4 py-2" href="#mental" onClick={() => setOpen(false)}>Mental Health</a>
-          <a className="block px-4 py-2" href="#env" onClick={() => setOpen(false)}>Environment</a>
-          <a className="block px-4 py-2" href="#contact" onClick={() => setOpen(false)}>Contact</a>
+        <div className="absolute right-0 mt-2 w-48 bg-light border border-primary rounded shadow">
+          <a className="block px-4 py-2 text-dark" href="#civic" onClick={() => setOpen(false)}>Civic Education</a>
+          <a className="block px-4 py-2 text-dark" href="#mental" onClick={() => setOpen(false)}>Mental Health</a>
+          <a className="block px-4 py-2 text-dark" href="#env" onClick={() => setOpen(false)}>Environment</a>
+          <a className="block px-4 py-2 text-light bg-primary rounded" href="#contact" onClick={() => setOpen(false)}>Contact</a>
         </div>
       )}
     </div>
