@@ -136,21 +136,21 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-light text-dark">
       {/* Header / Nav */}
-      <header className="bg-light shadow-sm sticky top-0 z-20">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="text-2xl font-bold text-red-600 hover:text-red-800 transition-colors">
-            Ujana na Ujuzi
-          </a>
+    <header className="bg-light shadow-sm sticky top-0 z-20">
+       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+       <a  href="#" className="text-2xl font-bold text-primary">Ujana na Ujuzi</a>
+    
+      <nav className="flex gap-6 items-center">
+         <a href="#civic" className="hover:text-primary">Civic Education</a>
+        <a href="#mental" className="hover:text-primary">Mental Health</a>
+        <a href="#env" className="hover:text-primary">Environment</a>
+        <a href="#contact" className="bg-primary text-light px-4 py-2 rounded hover:bg-red-700">Contact</a>
+      </nav>
 
-          <nav className="hidden md:flex gap-6 items-center">
-            <a href="#civic" className="hover:text-red-600 transition-colors">Civic</a>
-            <a href="#mental" className="hover:text-red-600 transition-colors">Mental</a>
-            <a href="#env" className="hover:text-red-600 transition-colors">Environment</a>
-          </nav>
+      <MobileMenu />
+     </div>
+    </header>
 
-          <MobileMenu />
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto px-6 py-12 space-y-8">
