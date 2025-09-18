@@ -4,7 +4,7 @@ import ContactForm from "./components/ContactForm.jsx";
 import Footer from "./components/Footer.jsx";
 import MobileMenu from "./components/MobileMenu.jsx";
 
-// --- Animated Collapsible Section ---
+// --- Animated Collapsible Section with Enhanced Styling ---
 const CollapsibleSection = ({ title, summary, items }) => {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
@@ -16,16 +16,16 @@ const CollapsibleSection = ({ title, summary, items }) => {
   };
 
   return (
-    <div className="border rounded-md p-6 bg-white shadow-md transition-all duration-300">
+    <div className="border-2 border-red-500 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-shadow duration-300">
       <button
-        className="w-full text-left flex justify-between items-center text-xl font-semibold text-primary hover:text-red-700 transition-colors"
+        className="w-full text-left flex justify-between items-center text-2xl font-bold text-red-600 hover:text-red-800 transition-colors"
         onClick={toggleOpen}
       >
         {title}
-        <span>{isOpen ? "▲" : "▼"}</span>
+        <span className="ml-2">{isOpen ? "▲" : "▼"}</span>
       </button>
 
-      <p className="mt-2 text-gray-700">{summary}</p>
+      <p className="mt-2 text-gray-800 text-lg">{summary}</p>
 
       <div
         ref={contentRef}
@@ -33,8 +33,8 @@ const CollapsibleSection = ({ title, summary, items }) => {
         className="overflow-hidden transition-max-height duration-500 ease-in-out mt-4"
       >
         {items.map((item, idx) => (
-          <div key={idx} className="pl-4 mb-4">
-            <h4 className="font-semibold">{item.title}</h4>
+          <div key={idx} className="pl-4 mt-4 space-y-4 border-l-2 border-red-200">
+            <h4 className="font-semibold text-red-600 text-lg">{item.title}</h4>
             <p className="text-gray-700">{item.text}</p>
             {item.subItems && (
               <ul className="list-disc list-inside mt-1 text-gray-600">
@@ -117,14 +117,14 @@ export default function App() {
       {/* Header / Nav */}
       <header className="bg-light shadow-sm sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="text-2xl font-bold text-primary">
+          <a href="#" className="text-2xl font-bold text-red-600 hover:text-red-800 transition-colors">
             Ujana na Ujuzi
           </a>
 
           <nav className="hidden md:flex gap-6 items-center">
-            <a href="#civic" className="hover:text-primary transition-colors">Civic</a>
-            <a href="#mental" className="hover:text-primary transition-colors">Mental</a>
-            <a href="#env" className="hover:text-primary transition-colors">Environment</a>
+            <a href="#civic" className="hover:text-red-600 transition-colors">Civic</a>
+            <a href="#mental" className="hover:text-red-600 transition-colors">Mental</a>
+            <a href="#env" className="hover:text-red-600 transition-colors">Environment</a>
           </nav>
 
           <MobileMenu />
