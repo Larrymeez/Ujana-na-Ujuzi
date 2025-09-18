@@ -1,8 +1,22 @@
-/* Custom styles (if needed) */
-body {
-  margin: 0;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.animate-fadeIn-delay {
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0.5s; /* tagline comes later */
+}
+
 
 a {
   font-weight: 500;

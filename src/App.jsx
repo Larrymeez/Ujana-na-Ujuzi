@@ -156,7 +156,7 @@ export default function App() {
       <main className="flex-1 max-w-6xl mx-auto px-6 py-12 space-y-8">
         {/* Hero Section */}
         <Hero>
-          <p className="mt-4 text-lg text-gray-700">
+          <p className="mt-4 text-lg text-gray-600 italic max-w-2xl mx-auto animate-fadeIn-delay">
             Empowering Youth for Civic, Mental, and Environmental Impact
           </p>
         </Hero>
