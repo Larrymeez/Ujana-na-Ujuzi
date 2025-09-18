@@ -159,7 +159,15 @@ export default function App() {
           <p className="mt-4 text-lg text-gray-600 italic max-w-2xl mx-auto animate-fadeIn-delay">
             Empowering Youth for Civic, Mental, and Environmental Impact
           </p>
-        </Hero>
+          <div className="mt-6 animate-fadeIn-delay">
+              <a
+                href="#contact"
+                className="inline-block bg-red-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition-transform transform hover:scale-105"
+              >
+               Join Us
+              </a>
+          </div>
+        </Hero> 
 
         {/* Collapsible Sections */}
         <section id="civic">
