@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"; // Path to your logo
 
 export default function Hero() {
   const [showTagline, setShowTagline] = useState(false);
@@ -18,8 +18,18 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="text-center py-12 rounded-lg shadow-md bg-red-50 dark:bg-gray-800 transition-colors duration-300">
-      <h1 className="text-4xl md:text-5xl font-bold text-red-600 dark:text-red-400 transition-colors duration-300 hover:text-black dark:hover:text-white">
+    <section className="text-center py-12 rounded-lg shadow-md bg-white transition-colors duration-300">
+      {/* Logo */}
+      <div className="mb-6">
+        <img
+          src={logo}
+          alt="Ujana na Ujuzi Logo"
+          className="w-40 md:w-40 mx-auto transition-transform duration-300 transform hover:scale-110"
+        />
+      </div>
+
+      {/* Heading */}
+      <h1 className="text-4xl md:text-5xl font-bold text-red-600 transition-colors duration-300 hover:text-black">
         Welcome to Ujana na Ujuzi
       </h1>
 
@@ -29,8 +39,8 @@ export default function Hero() {
           showTagline ? "opacity-100" : "opacity-0"
         }`}
       >
-        <p className="text-lg text-gray-600 dark:text-gray-300 italic font-bold transform transition duration-300 hover:scale-105 hover:text-red-600 dark:hover:text-red-400">
-          Empowering Youth for Civic Education, Mental Health & Environmental Action
+        <p className="text-lg text-gray-600 italic font-bold transform transition duration-300 hover:scale-105 hover:text-red-600">
+          Empowering Youth for Civic Engagement, Mental Health & Climate Action
         </p>
       </div>
 
@@ -40,21 +50,21 @@ export default function Hero() {
           showButton ? "opacity-100" : "opacity-0"
         }`}
       >
-        <Link
-          to="/contact"
-          className="inline-block bg-red-600 dark:bg-red-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-red-700 dark:hover:bg-red-600 hover:scale-110 hover:shadow-xl transform transition duration-300"
+        <a
+          href="/contact"
+          className="inline-block bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-red-700 hover:scale-110 hover:shadow-xl transform transition duration-300"
         >
           Join Us
-        </Link>
+        </a>
       </div>
 
-      {/* Optional Subtext */}
+      {/* Subtext */}
       <div
         className={`mt-4 transition-opacity duration-700 ${
           showSubtext ? "opacity-100" : "opacity-0"
         }`}
       >
-        <p className="text-sm text-gray-500 dark:text-gray-400">Be part of the change today!</p>
+        <p className="text-sm text-gray-500">Be part of the change today!</p>
       </div>
     </section>
   );

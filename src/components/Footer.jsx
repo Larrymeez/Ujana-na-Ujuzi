@@ -1,75 +1,85 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import logo from "../assets/logo.png"; // make sure your logo is in src/assets/
 
 export default function Footer() {
   const footerRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect(); // optional: stop observing after fade-in
+          setIsVisible(true);
+          observer.unobserve(entry.target); // trigger once
         }
       },
       { threshold: 0.1 }
     );
 
-    if (footerRef.current) observer.observe(footerRef.current);
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <footer
       ref={footerRef}
-      className={`bg-gray-800 text-gray-200 py-8 transition-opacity duration-1000 ${
-        visible ? "opacity-100" : "opacity-0"
+      className={`bg-gray-50 text-gray-700 py-8 shadow-inner transition-opacity duration-1000 ${
+        isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        {/* Logo / Title */}
-        <h1 className="text-2xl font-bold text-red-600">
-          Ujana na Ujuzi
-        </h1>
+      <div className="max-w-6xl mx-auto flex flex-col items-center space-y-6 px-6">
+        {/* Logo */}
+        <img
+          src={logo}
+          alt="Ujana na Ujuzi Logo"
+          className="w-16 md:w-20 transition-transform duration-300 hover:scale-110"
+        />
 
-        {/* Footer Links */}
-        <ul className="flex space-x-6">
+        {/* Links */}
+        <ul className="flex space-x-6 text-gray-700">
           <li>
-            <Link to="/" className="hover:text-red-500 transition-colors">Home</Link>
+            <a href="/about" className="hover:text-red-600 transition-colors">
+              About
+            </a>
           </li>
           <li>
-            <Link to="/civic" className="hover:text-red-500 transition-colors">Civic Education</Link>
+            <a href="/gallery" className="hover:text-red-600 transition-colors">
+              Gallery
+            </a>
           </li>
           <li>
-            <Link to="/mental" className="hover:text-red-500 transition-colors">Mental Health</Link>
-          </li>
-          <li>
-            <Link to="/env" className="hover:text-red-500 transition-colors">Environment</Link>
-          </li>
-          <li>
-            <Link to="/contact" className="hover:text-red-500 transition-colors">Contact</Link>
+            <a href="/contact" className="hover:text-red-600 transition-colors">
+              Contact
+            </a>
           </li>
         </ul>
 
-        {/* Social Media Icons */}
-        <div className="flex space-x-4 mt-4 md:mt-0">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-red-500 transition-colors transform hover:scale-110">
-            <FaFacebookF size={20} />
+        {/* Socials */}
+        <div className="flex space-x-4 text-gray-700">
+          <a href="#" className="hover:text-red-600 transition-colors">
+            <FaFacebook size={20} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-red-500 transition-colors transform hover:scale-110">
+          <a href="#" className="hover:text-red-600 transition-colors">
             <FaTwitter size={20} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-red-500 transition-colors transform hover:scale-110">
+          <a href="#" className="hover:text-red-600 transition-colors">
             <FaInstagram size={20} />
           </a>
+          <a href="#" className="hover:text-red-600 transition-colors">
+            <FaLinkedin size={20} />
+          </a>
         </div>
-      </div>
 
-      {/* Footer Credits */}
-      <p className="text-sm text-gray-400 text-center mt-6">
-        &copy; {new Date().getFullYear()} Ujana na Ujuzi. All rights reserved.
-      </p>
+        {/* Copyright */}
+        <p className="text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} Ujana na Ujuzi. All Rights Reserved.
+        </p>
+      </div>
     </footer>
   );
 }
+
