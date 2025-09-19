@@ -4,28 +4,27 @@ import PillarCard from "./PillarCard.jsx";
 
 export default function Home() {
   return (
-    <div>
+    <main className="bg-gray-900 min-h-screen px-6 py-12">
       <Hero />
 
-      {/* Pillars preview section */}
-      <section className="max-w-6xl mx-auto px-6 py-12 grid gap-6 md:grid-cols-3">
+      {/* Pillars preview */}
+      <div className="mt-12 grid md:grid-cols-3 gap-6">
         <PillarCard
           title="Civic Education"
-          description="Workshops, youth programs, and community engagement for civic awareness."
+          description="Workshops, voter education, community dialogues and youth programs to build civic awareness and participation."
           link="/civic"
         />
         <PillarCard
           title="Mental Health"
-          description="Peer-support groups, awareness campaigns, and professional referrals."
+          description="Peer-support groups, awareness campaigns, and referrals to professional services."
           link="/mental"
         />
         <PillarCard
           title="Environmental Conservation"
-          description="Tree planting, clean-up drives, and environmental education."
+          description="Tree planting, clean-up drives, and environmental education for schools and communities."
           link="/env"
         />
-      </section>
-    </div>
+      </div>
+    </main>
   );
 }
-
