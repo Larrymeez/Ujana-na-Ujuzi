@@ -6,6 +6,9 @@ import Home from "./components/Home.jsx";
 import CivicEducation from "./components/Pillars/CivicEducation.jsx";
 import MentalHealth from "./components/Pillars/MentalHealth.jsx";
 import EnvironmentalConservation from "./components/Pillars/EnvironmentalConservation.jsx";
+import Footer from "./components/Footer.jsx";
+import Gallery from "./components/Gallery.jsx";
+import About from "./components/About.jsx";
 
 export default function App() {
   return (
@@ -16,7 +19,11 @@ export default function App() {
         <Route path="/civic" element={<CivicEducation />} />
         <Route path="/mental" element={<MentalHealth />} />
         <Route path="/env" element={<EnvironmentalConservation />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/about" element={<About />} />
+
       </Routes>
+      <Footer /> {/* Footer visible on all pages */}
     </Router>
   );
 }

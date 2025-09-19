@@ -56,6 +56,15 @@ export default function Navbar() {
 
         <li>
           <Link
+            to="/gallery"
+            className="text-gray-800 dark:text-gray-200 hover:text-red-800 dark:hover:text-red-400 transition"
+          >
+            Gallery
+          </Link>
+        </li>
+        
+        <li>
+          <Link
             to="/about"
             className="text-gray-800 dark:text-gray-200 hover:text-red-800 dark:hover:text-red-400 transition"
           >
