@@ -1,18 +1,22 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Pillars from "./components/Pillars";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+import Navbar from "./components/Navbar.jsx";
+import Home from "./components/Home.jsx";
+import CivicEducation from "./components/Pillars/CivicEducation.jsx";
+import MentalHealth from "./components/Pillars/MentalHealth.jsx";
+import EnvironmentalConservation from "./components/Pillars/EnvironmentalConservation.jsx";
+
+export default function App() {
   return (
-    <div className="font-sans text-gray-800">
+    <Router>
       <Navbar />
-      <main>
-        <Hero />
-        <Pillars />
-      </main>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/civic" element={<CivicEducation />} />
+        <Route path="/mental" element={<MentalHealth />} />
+        <Route path="/env" element={<EnvironmentalConservation />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
