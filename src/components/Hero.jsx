@@ -1,12 +1,21 @@
 import React from "react";
 
-export default function Hero({ children }) {
+export default function Hero() {
   return (
-    <section className="text-center py-12 bg-red-50 rounded-lg shadow-md">
-      <h1 className="text-4xl md:text-5xl font-bold text-red-600 animate-fadeIn">
-        Welcome to Ujana na Ujuzi
+    <section
+      id="home"
+      className="text-center py-16 bg-red-50 rounded-lg shadow-md mx-4 my-6"
+    >
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">
+        Empowering Communities, Inspiring Change
       </h1>
-      {children && <div className="mt-4">{children}</div>}
+      <p className="text-lg md:text-xl mb-6">
+        Ujana na Ujuzi is a grassroots CBO dedicated to Civic Education,
+        Mental Health, and Environmental Conservation.
+      </p>
+      <button className="px-6 py-3 bg-red-600 text-white rounded-2xl shadow hover:bg-red-700 transition">
+        Join Us
+      </button>
     </section>
   );
 }
