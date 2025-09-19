@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Hero from "./Hero";
-import Pillars from "./Pillars";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Pillars from "./components/Pillars";
 
 function App() {
   return (
