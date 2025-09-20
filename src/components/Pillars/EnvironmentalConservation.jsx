@@ -1,10 +1,12 @@
 import React from "react";
-import tree1 from "../../assets/tree1.jpg";
-import tree2 from "../../assets/tree2.jpg";
-import tree3 from "../../assets/tree3.jpg";
-
 
 export default function EnvironmentalConservation() {
+  const trees = [
+    "/assets/tree1.jpg",
+    "/assets/tree2.jpg",
+    "/assets/tree3.jpg",
+  ];
+
   return (
     <section className="min-h-screen bg-white text-gray-800 py-12 px-6">
       {/* Title */}
@@ -26,21 +28,14 @@ export default function EnvironmentalConservation() {
 
         {/* Images */}
         <div className="grid md:grid-cols-3 gap-6 mt-8">
-          <img
-            src={tree1}
-            alt="Tree planting event"
-            className="rounded-lg shadow-md hover:scale-105 transform transition duration-300"
-          />
-          <img
-            src={tree2}
-            alt="Youth planting trees"
-            className="rounded-lg shadow-md hover:scale-105 transform transition duration-300"
-          />
-          <img
-            src={tree3}
-            alt="Pupils learning about indigenous trees"
-            className="rounded-lg shadow-md hover:scale-105 transform transition duration-300"
-          />
+          {trees.map((src, idx) => (
+            <img
+              key={idx}
+              src={src}
+              alt={`Tree event ${idx + 1}`}
+              className="rounded-lg shadow-md hover:scale-105 transform transition duration-300"
+            />
+          ))}
         </div>
       </div>
     </section>

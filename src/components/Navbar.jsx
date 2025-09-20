@@ -1,7 +1,5 @@
-// src/components/Navbar.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -11,12 +9,10 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Measure navbar height and dispatch it
   useEffect(() => {
     if (navRef.current) {
       const resizeObserver = new ResizeObserver(() => {
@@ -45,7 +41,7 @@ export default function Navbar() {
       {/* Logo + Brand */}
       <Link to="/" className="flex items-center space-x-2">
         <img
-          src={logo}
+          src="/assets/logo.png"
           alt="Ujana na Ujuzi Logo"
           className="w-20 md:w-24 lg:w-28 object-contain"
         />

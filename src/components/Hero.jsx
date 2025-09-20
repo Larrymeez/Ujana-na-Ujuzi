@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
 
-// Dynamically import all hero images from assets folder
-function importAll(r) {
-  return r.keys().map(r);
-}
-const images = importAll(
-  require.context("../assets", false, /hero\d+\.jpg$/)
-);
+const images = [
+  "/assets/hero9.jpg",
+  "/assets/hero2.jpg",
+  "/assets/hero3.jpg",
+  "/assets/hero4.jpg",
+  "/assets/hero5.jpg",
+  "/assets/hero6.jpg",
+  "/assets/hero7.jpg", // your new image
+];
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -48,10 +49,10 @@ export default function Hero() {
 
       {/* Logos */}
       <div className="absolute top-6 left-6">
-        <img src={logo} alt="Logo Left" className="w-36 object-contain" />
+        <img src="/assets/logo.png" alt="Logo Left" className="w-36 object-contain" />
       </div>
       <div className="absolute top-6 right-6">
-        <img src={logo} alt="Logo Right" className="w-36 object-contain" />
+        <img src="/assets/logo.png" alt="Logo Right" className="w-36 object-contain" />
       </div>
 
       {/* Hero Text Section */}

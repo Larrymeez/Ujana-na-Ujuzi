@@ -1,6 +1,5 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
-import logo from "../assets/logo.png";
 
 export default function Footer() {
   return (
@@ -8,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 space-y-6 md:space-y-0">
         {/* Logo */}
         <div className="flex items-center space-x-4">
-          <img src={logo} alt="Logo" className="w-20 md:w-24 object-contain" />
+          <img src="/assets/logo.png" alt="Logo" className="w-20 md:w-24 object-contain" />
           <p className="text-sm">&copy; {new Date().getFullYear()} Ujana na Ujuzi. All Rights Reserved.</p>
         </div>
 
