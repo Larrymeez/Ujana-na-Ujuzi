@@ -15,7 +15,7 @@ export default function EnvironmentalConservation() {
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Intro */}
         <p className="text-lg leading-relaxed text-center">
-          The exercise was organized and well attended by youth drawn from{" "}
+          A tree planting exercise was organized and well attended by youth drawn from{" "}
           <span className="font-semibold">Ujana na Ujuzi</span> and{" "}
           <span className="font-semibold">Green Globe International CBOs</span>. 
           We resolved to grow the trees by enlisting{" "}
