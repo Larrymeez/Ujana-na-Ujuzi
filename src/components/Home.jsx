@@ -10,17 +10,17 @@ export default function Home() {
       {/* Pillars preview */}
       <div className="mt-12 px-6 grid md:grid-cols-3 gap-6">
         <PillarCard
-          title="Civic Education"
+          title="Civic Engagement"
           description="Workshops, voter education, community dialogues and youth programs to build civic awareness and participation."
           link="/civic"
         />
         <PillarCard
-          title="Mental Health"
+          title="Mental Wellbeing"
           description="Peer-support groups, awareness campaigns, and referrals to professional services."
           link="/mental"
         />
         <PillarCard
-          title="Environmental Conservation"
+          title="Climate Action"
           description="Tree planting, clean-up drives, and environmental education for schools and communities."
           link="/env"
         />
