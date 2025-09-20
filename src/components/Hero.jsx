@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-import hero1 from "../assets/hero1.jpg";
-import hero2 from "../assets/hero2.jpg";
-import hero3 from "../assets/hero3.jpg";
-import hero4 from "../assets/hero4.jpg";
-import hero5 from "../assets/hero5.jpg";
-import hero6 from "../assets/hero6.jpg";
-
-const images = [hero1, hero2, hero3, hero4, hero5, hero6];
+// Dynamically import all hero images from assets folder
+function importAll(r) {
+  return r.keys().map(r);
+}
+const images = importAll(
+  require.context("../assets", false, /hero\d+\.jpg$/)
+);
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -57,7 +56,6 @@ export default function Hero() {
 
       {/* Hero Text Section */}
       <div className="relative z-10 flex flex-col items-center justify-end h-full text-center px-6 pb-12">
-   
         <p
           className={`mt-2 max-w-3xl font-bold text-xl italic text-green transition-all duration-700 transform delay-200 ${
             showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
@@ -70,7 +68,6 @@ export default function Hero() {
             }`}
           >
             Civic Engagement
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-700 group-hover:w-full"></span>
           </span>
           ,{" "}
           <span
@@ -79,7 +76,6 @@ export default function Hero() {
             }`}
           >
             Mental Wellbeing
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-700 group-hover:w-full"></span>
           </span>{" "}
           &{" "}
           <span
@@ -88,7 +84,6 @@ export default function Hero() {
             }`}
           >
             Climate Action
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-400 transition-all duration-700 group-hover:w-full"></span>
           </span>
         </p>
 
