@@ -15,7 +15,7 @@ export default function Home() {
           link="/civic"
         />
         <PillarCard
-          title="Mental Wellbeing"
+          title="Mental Health Wellbeing"
           description="Peer-support groups, awareness campaigns, and referrals to professional services."
           link="/mental"
         />
