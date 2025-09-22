@@ -74,7 +74,7 @@ export default function Navbar() {
               <Link to="/civic" className="block px-4 py-2 hover:bg-red-50">Civic Engagement</Link>
             </li>
             <li>
-              <Link to="/mental" className="block px-4 py-2 hover:bg-red-50">Mental Wellbeing</Link>
+              <Link to="/mental" className="block px-4 py-2 hover:bg-red-50">Mental Health Wellbeing</Link>
             </li>
             <li>
               <Link to="/env" className="block px-4 py-2 hover:bg-red-50">Climate Action</Link>

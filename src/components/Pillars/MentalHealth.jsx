@@ -30,7 +30,7 @@ export default function MentalHealth() {
         animate="visible"
         custom={0}
       >
-        Mental Wellbeing
+        Mental Health Wellbeing
       </motion.h1>
 
       {/* Intro */}

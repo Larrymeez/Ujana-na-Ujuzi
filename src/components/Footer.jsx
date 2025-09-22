@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Logo */}
         <div className="flex items-center space-x-4">
           <img src="/assets/logo.png" alt="Logo" className="w-20 md:w-24 object-contain" />
-          <p className="text-sm">&copy; {new Date().getFullYear()} Ujana na Ujuzi. All Rights Reserved.</p>
+          <p className="text-sm">&copy; 2021 Ujana na Ujuzi. All Rights Reserved.</p>
         </div>
 
         {/* Center Links */}

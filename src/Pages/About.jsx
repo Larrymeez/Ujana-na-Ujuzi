@@ -42,7 +42,7 @@ export default function About() {
           in Nairobi, registered with the State Department for Social Development at the Roysambu Sub-county Office.  
           We work in the areas of <span className="text-red-600 font-semibold">climate action</span>,{" "}
           <span className="text-red-600 font-semibold">civic engagement</span> and{" "}
-          <span className="text-red-600 font-semibold">mental wellbeing</span>, aligned to the 
+          <span className="text-red-600 font-semibold">mental health wellbeing</span>, aligned to the 
           Sustainable Development Goals (SDGs) and the Youth Development Index (YDI).
         </p>
 

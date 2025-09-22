@@ -24,7 +24,7 @@ export default function EnvironmentalConservation() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Environmental Conservation
+        Climate Action
       </motion.h2>
 
       {/* Introductory Text */}

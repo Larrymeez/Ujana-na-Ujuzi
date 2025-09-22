@@ -7,7 +7,7 @@ const images = [
   "/assets/event1.jpg",
   "/assets/hero4.jpg",
   "/assets/civic2.jpg",
-  "/assets/hero6.jpg",
+  "/assets/event2.jpg",
   "/assets/hero7.jpg", // your new image
 ];
 
@@ -62,13 +62,13 @@ export default function Hero() {
             showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           } hover:scale-105`}
         >
-          Empowering Youth for{" "}
+          In{" "}
           <span
             className={`relative font-bold text-red-400 not-italic inline-block transition-all duration-700 delay-[400ms] ${
               showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
-            Civic Engagement
+            Speech
           </span>
           ,{" "}
           <span
@@ -76,7 +76,7 @@ export default function Hero() {
               showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
-            Mental Wellbeing
+            Conduct
           </span>{" "}
           &{" "}
           <span
@@ -84,7 +84,7 @@ export default function Hero() {
               showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
           >
-            Climate Action
+            Love
           </span>
         </p>
 
