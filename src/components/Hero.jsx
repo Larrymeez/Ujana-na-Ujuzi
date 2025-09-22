@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const images = [
   "/assets/hero9.jpg",
   "/assets/hero2.jpg",
-  "/assets/hero3.jpg",
+  "/assets/event1.jpg",
   "/assets/hero4.jpg",
-  "/assets/hero5.jpg",
+  "/assets/civic2.jpg",
   "/assets/hero6.jpg",
   "/assets/hero7.jpg", // your new image
 ];
