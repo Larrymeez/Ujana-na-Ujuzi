@@ -10,6 +10,7 @@ import Footer from "./components/Footer.jsx";
 import Gallery from "./Pages/Gallery.jsx";
 import About from "./Pages/About.jsx";
 import ContactForm from "./Pages/ContactForm.jsx";
+import Bulldogs from "./Pages/Bulldogs";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactForm />} />
+        <Route path="/bulldogs" element={<Bulldogs />} />
 
       </Routes>
       <Footer /> {/* Footer visible on all pages */}
