@@ -1,98 +1,85 @@
-// src/Pages/Bulldogs.jsx
 import React from "react";
-import { motion } from "framer-motion";
 
 export default function Bulldogs() {
   return (
-    <div className="bg-black text-gray-100 min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="text-center py-16 bg-gradient-to-b from-gray-900 to-black">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-bold mb-4 text-yellow-400"
-        >
+    <section className="min-h-screen bg-black text-white font-sans">
+      {/* Hero / Header */}
+      <div className="relative text-center py-16 bg-gradient-to-b from-black via-gray-900 to-black">
+        <h1 className="text-5xl font-extrabold text-blue-500 tracking-tight mb-4">
           44 Bulldogs Football Club
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
-          className="italic text-gray-400"
-        >
-          “In Speech, Conduct and Love”
-        </motion.p>
-      </section>
+        </h1>
+        <p className="text-lg text-gray-300 italic max-w-2xl mx-auto px-4">
+          “Building resilience, unity, and purpose through football.”
+        </p>
+      </div>
 
-      {/* New Jersey Announcement */}
-      <section className="max-w-6xl mx-auto py-12 px-6 text-center">
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="bg-gray-900 rounded-2xl p-8 shadow-lg border border-yellow-400"
-        >
-          <h2 className="text-3xl font-semibold text-yellow-400 mb-4">
-            🧥 New Season Jersey Drop!
-          </h2>
-          <p className="text-gray-300 mb-6">
-            The 2025/26 official 44 Bulldogs kit has arrived — bold, resilient,
-            and unstoppable. Represent the spirit of the bulldog with pride.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            {/* Placeholder Jersey Image */}
-            <div className="bg-gray-800 h-72 rounded-lg flex items-center justify-center text-gray-500 text-xl">
-              Jersey Image Placeholder
-            </div>
-
-            {/* Purchase Section */}
-            <div>
-              <p className="text-gray-300 mb-4">
-                Available in all sizes — get yours today!
-              </p>
-              <button className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
-                Buy Now
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Club Overview */}
-      <section className="max-w-6xl mx-auto py-16 px-6 grid md:grid-cols-2 gap-10 items-center">
-        <div className="bg-gray-800 h-64 rounded-lg flex items-center justify-center text-gray-500 text-xl">
-          Placeholder Image / Video
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold text-yellow-400 mb-3">
-            Our Mission & Vision
-          </h2>
-          <p className="text-gray-300 leading-relaxed">
-            Empowering youth through football and fostering peace, mental
-            wellness, and civic action. Bulldogs is not just a team — it’s a
-            movement.
-          </p>
-        </div>
-      </section>
-
-      {/* Gallery Preview */}
-      <section className="max-w-6xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-semibold text-yellow-400 mb-6 text-center">
-          Club Highlights
+      {/* About Section */}
+      <div className="max-w-6xl mx-auto px-6 py-16 space-y-8">
+        <h2 className="text-3xl font-bold text-blue-400 border-l-4 border-red-600 pl-3">
+          About the Club
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="bg-gray-800 h-48 rounded-lg flex items-center justify-center text-gray-500"
+        <p className="text-gray-300 leading-relaxed">
+          44 Bulldogs FC is a youth-centered grassroots football initiative
+          established under <span className="text-blue-400 font-semibold">Ujana na Ujuzi CBO</span>.
+          We are committed to transforming football into a tool for
+          <span className="text-red-500 font-semibold"> peace, mental health, and empowerment.</span>
+        </p>
+
+        {/* Placeholder Images Section */}
+        <div className="grid md:grid-cols-3 gap-6 mt-8">
+          {[1, 2, 3].map((num) => (
+            <div
+              key={num}
+              className="bg-gray-900 rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300"
             >
-              Image {i + 1}
-            </motion.div>
+              <img
+                src={`/assets/placeholder${num}.jpg`}
+                alt={`Bulldogs placeholder ${num}`}
+                className="w-full h-56 object-cover opacity-90 hover:opacity-100"
+              />
+              <div className="p-4">
+                <p className="text-gray-400 text-sm italic">
+                  Training session {num}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
-      </section>
-    </div>
+      </div>
+
+      {/* New Jersey Reveal */}
+      <div className="bg-gradient-to-b from-gray-900 to-black py-20 text-center px-6">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-500 mb-6">
+          🔥 New Season Jersey Unveiled!
+        </h2>
+        <p className="text-gray-300 max-w-2xl mx-auto mb-10">
+          Our 2025/26 season jersey celebrates unity, resilience, and community pride.
+          Be part of the movement — wear the spirit of the Bulldogs.
+        </p>
+
+        <div className="max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transform transition duration-500">
+          <img
+            src="/jersey.jpeg"
+            alt="Bulldogs 2025 Jersey"
+            className="w-full h-auto"
+          />
+        </div>
+
+        <button className="mt-8 bg-blue-600 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition-all duration-300 hover:scale-105">
+          Buy Now
+        </button>
+      </div>
+
+      {/* Call to Action */}
+      <div className="text-center py-16 bg-black border-t border-gray-800">
+        <h3 className="text-2xl font-semibold text-blue-400 mb-4">
+          Join the Bulldogs Movement
+        </h3>
+        <p className="text-gray-400 max-w-xl mx-auto">
+          Whether you’re a player, fan, or supporter — your energy fuels our journey.
+          Follow us, show up, and stay locked in for what’s next.
+        </p>
+      </div>
+    </section>
   );
 }
