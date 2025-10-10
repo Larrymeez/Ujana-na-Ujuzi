@@ -1,18 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-export default function PillarCard({ title, description, link }) {
+export default function PillarCard({ title, description, link, bgImage }) {
   return (
-    <div className="bg-gray-100 rounded-xl shadow-md p-6 border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl">
-      <h2 className="text-2xl font-bold text-red-600 mb-3">{title}</h2>
-      <p className="text-gray-700 mb-4">{description}</p>
-      <Link
-        to={link}
-        className="inline-block text-red-600 font-semibold hover:text-red-800 transition-colors duration-300"
-      >
-        Learn More →
-      </Link>
-    </div>
+    <a
+      href={link}
+      className="relative block rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 min-h-[18rem]"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Overlay to improve text readability */}
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      {/* Centered content */}
+      <div className="relative flex flex-col justify-center items-center text-center h-full p-6">
+        <h3 className="text-2xl font-bold mb-2 text-red-600">{title}</h3>
+        <p className="text-white text-1xl">{description}</p>
+      </div>
+    </a>
   );
 }
-

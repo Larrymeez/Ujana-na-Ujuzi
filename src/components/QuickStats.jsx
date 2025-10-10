@@ -4,9 +4,9 @@ import { FaTree, FaUsers, FaHeart, FaChalkboardTeacher } from "react-icons/fa";
 
 const statsData = [
   { title: "Community Reached", value: 1200, icon: <FaUsers size={36} className="text-red-600" /> },
-  { title: "Trees Planted", value: 850, icon: <FaTree size={36} className="text-black" /> },
-  { title: "Mental Health Sessions", value: 320, icon: <FaHeart size={36} className="text-red-600" /> },
-  { title: "Workshops Conducted", value: 45, icon: <FaChalkboardTeacher size={36} className="text-black" /> },
+  { title: "Trees Planted", value: 1000, icon: <FaTree size={36} className="text-black" /> },
+  { title: "Mental Health Sessions", value: 100, icon: <FaHeart size={36} className="text-red-600" /> },
+  { title: "Workshops Conducted", value: 50, icon: <FaChalkboardTeacher size={36} className="text-black" /> },
 ];
 
 export default function QuickStats() {
@@ -43,7 +43,7 @@ export default function QuickStats() {
             <div className="w-20 h-20 flex items-center justify-center rounded-full bg-red-100 mb-4">
               {stat.icon}
             </div>
-            <p className="text-3xl font-extrabold text-black">{counts[i]}</p>
+            <p className="text-3xl font-extrabold text-black">{counts[i]}+</p>
             <p className="mt-2 text-center text-lg font-semibold">{stat.title}</p>
           </div>
         ))}
