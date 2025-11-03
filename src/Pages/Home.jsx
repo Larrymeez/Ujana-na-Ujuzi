@@ -101,7 +101,7 @@ export default function Home() {
         {/* Inline Alert */}
         {alert.message && (
           <p
-            className={`mb-2 text-sm ${
+            className={`mb-2 text-sm font-bold ${
               alert.type === "success"
                 ? "text-green-600"
                 : alert.type === "warning"
