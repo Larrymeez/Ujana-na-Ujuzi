@@ -132,7 +132,7 @@ export default function Bulldogs() {
   return (
     <section className="bg-black text-white font-sans overflow-hidden relative">
       {/* HERO */}
-      <div className="relative h-screen w-full overflow-hidden">
+      <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
         {images.map((img, index) => (
           <img
             key={index}
@@ -144,7 +144,7 @@ export default function Bulldogs() {
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
-        <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-10">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center">
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight flex justify-center flex-wrap animate-bounce">
             {renderRollingText("We Are The Pack", "glow-blue", tick)}
           </h1>

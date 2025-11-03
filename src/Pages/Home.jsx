@@ -45,7 +45,7 @@ export default function Home() {
       {/* Pillars preview */}
       <div className="mt-12 px-6 grid md:grid-cols-3 gap-6 fade-in-section">
   <PillarCard
-    title="Civic Engagement"
+    title="Civic Duty"
     description="Workshops, voter education, community dialogues and youth programs to build civic awareness and participation."
     link="/civic"
     bgImage="/assets/event1.jpg"
