@@ -98,12 +98,12 @@ export default function Bulldogs() {
 
   const management = [
     { name: "Murimi Karani", role: "President & Founder", photo: "/assets/raww.jpg" },
-    { name: "Derrick Kubai", role: "Vice President", photo: "/assets/kubai.jpg" },
-    { name: "Sofina Merinyo", role: "Vice President", photo: "/assets/sofina.jpg" },
-    { name: "Lincoln Wambua", role: "Sporting Director", photo: "/assets/lincoln.jpg" },
+    { name: "Derrick Kubai", role: "1st Vice President", photo: "/assets/kubai.jpg" },
+    { name: "Sofina Merinyo", role: "2nd Vice President", photo: "/assets/sofina.jpg" },
+    { name: "Lawrence Miringu", role: "Team Manager", photo: "/assets/larry.jpg" },
     { name: "Collins Tiego", role: "Technical Director", photo: "/assets/tiego.jpg" },
     { name: "Scarlet Wairimu", role: "C.E.O", photo: "/assets/hero2.jpg" },
-    { name: "Lawrence Miringu", role: "Team Manager", photo: "/assets/larry.jpg" },
+    { name: "Lincoln Wambua", role: "Sporting Director", photo: "/assets/lincoln.jpg" },
   ];
 
   const merch = [
