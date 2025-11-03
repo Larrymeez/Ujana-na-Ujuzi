@@ -51,6 +51,7 @@ export default function Pillars() {
           around mental health to promote overall well-being in society.
         </PillarCard>
 
+
         <PillarCard id="environment" title="Environmental Conservation">
           Through education and community initiatives, we encourage
           sustainable practices to protect our environment for future
