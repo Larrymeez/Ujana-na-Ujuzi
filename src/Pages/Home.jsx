@@ -7,20 +7,25 @@ import SupportSection from "../components/SupportSection.jsx";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [alert, setAlert] = useState({ message: "", type: "" }); // dynamic inline alert
+  const [alert, setAlert] = useState({ message: "", type: "" });
 
   // Fade-in scroll effect
   useEffect(() => {
     const sections = document.querySelectorAll(".fade-in-section");
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
         });
       },
       { threshold: 0.3 }
     );
+
     sections.forEach((section) => observer.observe(section));
+
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
@@ -43,7 +48,7 @@ export default function Home() {
       const data = await res.json();
 
       if (data.success) {
-        if (data.message.toLowerCase().includes("already")) {
+        if (data.message.includes("already")) {
           setAlert({ message: "You’re already part of our community!", type: "warning" });
         } else {
           setAlert({ message: "You’re now subscribed — welcome to the community!", type: "success" });
@@ -92,21 +97,23 @@ export default function Home() {
       <SupportSection />
 
       {/* Newsletter Section */}
-      <div className="mt-16 px-6 py-12 text-center fade-in-section">
-        <h2 className="text-3xl font-bold text-red-600 mb-4">Subscribe to Our Newsletter</h2>
+      <div className="mt-16 px-6 py-12 bg-red-50 text-center rounded-xl shadow-md fade-in-section">
+        <h2 className="text-3xl font-bold text-red-600 mb-4">
+          Subscribe to Our Newsletter
+        </h2>
         <p className="text-lg text-black mb-4">
           Stay updated on our workshops, programs, and ways you can support our initiatives.
         </p>
 
-        {/* Inline Alert */}
+        {/* Inline alert */}
         {alert.message && (
           <p
-            className={`mb-2 text-sm font-bold ${
+            className={`text-sm font-bold mb-2 ${
               alert.type === "success"
-                ? "text-green-600"
+                ? "text-green-700"
                 : alert.type === "warning"
-                ? "text-yellow-600"
-                : "text-red-600"
+                ? "text-yellow-700"
+                : "text-red-700"
             }`}
           >
             {alert.message}
