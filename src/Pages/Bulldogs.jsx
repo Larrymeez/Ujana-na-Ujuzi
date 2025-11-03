@@ -103,6 +103,7 @@ export default function Bulldogs() {
     { name: "Lincoln Wambua", role: "Sporting Director", photo: "/assets/lincoln.jpg" },
     { name: "Collins Tiego", role: "Technical Director", photo: "/assets/tiego.jpg" },
     { name: "Scarlet Wairimu", role: "C.E.O", photo: "/assets/hero2.jpg" },
+    { name: "Lawrence Miringu", role: "Team Manager", photo: "/assets/larry.jpg" },
   ];
 
   const merch = [
@@ -275,7 +276,7 @@ export default function Bulldogs() {
                             onClick={() =>
                               setSelection({ ...selection, size, color })
                             }
-                            className={`w-8 h-8 rounded-full border-2 border-gray-500 transition-transform transform hover:scale-110`}
+                            className="w-8 h-8 rounded-full border-2 border-gray-500 transition-transform transform hover:scale-110"
                             style={{
                               backgroundColor: color,
                               opacity:
@@ -462,12 +463,26 @@ export default function Bulldogs() {
         <h2 className="text-4xl font-bold text-blue-400 mb-12 text-center">
           Meet the Management
         </h2>
-        <div className="grid grid-cols-3 gap-8 justify-items-center">
-          {management.map((person, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center text-center w-48"
-            >
+
+        {/* First row: 4 people */}
+        <div className="flex justify-center gap-8 flex-wrap mb-8">
+          {management.slice(0, 4).map((person, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center w-48">
+              <img
+                src={person.photo}
+                alt={person.name}
+                className="w-28 h-28 rounded-full object-cover mb-3 border-4 border-blue-600/40 shadow-lg"
+              />
+              <h3 className="text-lg font-bold text-red-400">{person.name}</h3>
+              <p className="text-gray-300 text-sm">{person.role}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Second row: 3 people */}
+        <div className="flex justify-center gap-8 flex-wrap">
+          {management.slice(4).map((person, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center w-48">
               <img
                 src={person.photo}
                 alt={person.name}
