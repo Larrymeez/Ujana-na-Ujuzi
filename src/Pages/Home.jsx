@@ -7,6 +7,7 @@ import SupportSection from "../components/SupportSection.jsx";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   // Fade-in scroll effect
   useEffect(() => {
@@ -28,13 +29,31 @@ export default function Home() {
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
 
-  const handleSubscribe = () => {
+  const handleSubscribe = async () => {
     if (!email) return alert("Please enter your email");
-    setSubmitted(true);
-    setTimeout(() => {
-      setEmail("");
-      setSubmitted(false);
-    }, 3000);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/subscribe", {
+        // Update URL to deployed backend when live
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatusMessage("Subscribed successfully!");
+        setSubmitted(true);
+        setEmail("");
+        setTimeout(() => setSubmitted(false), 3000);
+      } else {
+        setStatusMessage(`Error: ${data.error}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setStatusMessage("Subscription failed. Try again.");
+    }
   };
 
   return (
@@ -44,26 +63,25 @@ export default function Home() {
 
       {/* Pillars preview */}
       <div className="mt-12 px-6 grid md:grid-cols-3 gap-6 fade-in-section">
-  <PillarCard
-    title="Civic Duty"
-    description="Workshops, voter education, community dialogues and youth programs to build civic awareness and participation."
-    link="/civic"
-    bgImage="/assets/event1.jpg"
-  />
-  <PillarCard
-    title="Mental Health Wellbeing"
-    description="Peer-support groups, awareness campaigns, and referrals to professional services."
-    link="/mental"
-    bgImage="/assets/civic3.jpg"
-  />
-  <PillarCard
-    title="Climate Action"
-    description="Tree planting, clean-up drives, and environmental education for schools and communities."
-    link="/env"
-    bgImage="/assets/hero6.jpg"
-  />
-</div>
-
+        <PillarCard
+          title="Civic Duty"
+          description="Workshops, voter education, community dialogues and youth programs to build civic awareness and participation."
+          link="/civic"
+          bgImage="/assets/event1.jpg"
+        />
+        <PillarCard
+          title="Mental Health Wellbeing"
+          description="Peer-support groups, awareness campaigns, and referrals to professional services."
+          link="/mental"
+          bgImage="/assets/civic3.jpg"
+        />
+        <PillarCard
+          title="Climate Action"
+          description="Tree planting, clean-up drives, and environmental education for schools and communities."
+          link="/env"
+          bgImage="/assets/hero6.jpg"
+        />
+      </div>
 
       {/* Support Section */}
       <SupportSection />
@@ -91,6 +109,9 @@ export default function Home() {
             {submitted ? "Subscribed!" : "Subscribe"}
           </button>
         </div>
+        {statusMessage && (
+          <p className="mt-4 text-sm text-gray-700 font-medium">{statusMessage}</p>
+        )}
       </div>
     </main>
   );
