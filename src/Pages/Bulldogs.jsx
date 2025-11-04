@@ -10,9 +10,9 @@ export default function Bulldogs() {
     "/assets/bulldog6.jpg",
     "/assets/bulldog17.jpg",
     "/assets/bulldog18.jpg",
-    "/assets/bulldog14.jpg",
-    "/assets/bulldog22.jpg",
     "/assets/bulldog25.jpg",
+    "/assets/bulldog22.jpg",
+
    
   ];
 
