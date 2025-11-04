@@ -4,7 +4,7 @@ export default function Bulldogs() {
   const images = [
     "/assets/bulldog12.jpg",
     "/assets/bulldog2.jpg",
-    "/assets/fans.jpg",
+    "/assets/bulldog26.jpg",
     "/assets/bulldog4.jpg",
     "/assets/bulldog16.jpg",
     "/assets/bulldog6.jpg",
@@ -12,6 +12,7 @@ export default function Bulldogs() {
     "/assets/bulldog18.jpg",
     "/assets/bulldog14.jpg",
     "/assets/bulldog22.jpg",
+   
   ];
 
   const [currentImage, setCurrentImage] = useState(0);

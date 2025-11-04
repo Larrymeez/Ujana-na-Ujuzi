@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const images = [
   "/assets/hero9.jpg",
   "/assets/hero2.jpg",
-  "/assets/event1.jpg",
-  "/assets/hero4.jpg",
-  "/assets/civic2.jpg",
+  "/assets/bulldog33.jpg",
+  "/assets/bulldog24.jpg",
+  "/assets/bulldog26.jpg",
   "/assets/event2.jpg",
-  "/assets/hero7.jpg", // your new image
+  "/assets/bulldog25.jpg", 
 ];
 
 export default function Hero() {
