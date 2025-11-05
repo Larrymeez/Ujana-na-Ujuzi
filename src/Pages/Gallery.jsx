@@ -4,6 +4,18 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Gallery() {
   const images = [
+    
+    "/assets/bulldog24.jpg",
+    "/assets/bulldog25.jpg",
+    "/assets/bulldog26.jpg",
+    "/assets/bulldog27.jpg",
+    "/assets/bulldog28.jpg",
+    "/assets/bulldog29.jpg",
+    "/assets/bulldog30.jpg",
+    "/assets/bulldog31.jpg",
+    "/assets/bulldog32.jpg",
+    "/assets/bulldog33.jpg",
+    "/assets/bulldog34.jpg",
     "/assets/event1.jpg",
     "/assets/event2.jpg",
     "/assets/event3.jpg",
@@ -28,6 +40,7 @@ export default function Gallery() {
     "/assets/hero8.jpg",
     "/assets/hero3.jpg",
     "/assets/hero6.jpg",
+    
   ];
 
   const [selected, setSelected] = useState(null);

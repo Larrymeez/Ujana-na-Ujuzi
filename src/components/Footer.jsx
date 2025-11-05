@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { useLocation, Link } from "react-router-dom";
@@ -10,19 +9,17 @@ export default function Footer() {
 
   return (
     <footer
-      className={`py-8 shadow-inner transition-all duration-500 ${
-        isDarkPage
-          ? "bg-black text-gray-300"
-          : "bg-white text-gray-700"
+      className={`py-4 shadow-inner transition-all duration-500 ${
+        isDarkPage ? "bg-black text-gray-300" : "bg-white text-gray-700"
       }`}
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 space-y-6 md:space-y-0">
-        {/* Logo and Copyright */}
-        <div className="flex items-center space-x-4">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 space-y-6 md:space-y-0">
+        {/* Left side — Logo + Copyright */}
+        <div className="flex items-center space-x-3">
           <img
             src="/assets/logo.png"
             alt="Logo"
-            className="w-20 md:w-24 object-contain"
+            className="w-16 md:w-20 object-contain"
           />
           <p
             className={`text-sm ${
@@ -33,9 +30,9 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Navigation Links */}
+        {/* Middle — Navigation Links */}
         <ul
-          className={`flex space-x-6 font-medium ${
+          className={`flex items-center space-x-6 font-medium ${
             isDarkPage ? "text-gray-300" : "text-gray-700"
           }`}
         >
@@ -65,8 +62,8 @@ export default function Footer() {
           </li>
         </ul>
 
-        {/* Social Icons */}
-        <div className="flex space-x-4">
+        {/* Right side — Social Icons */}
+        <div className="flex items-center space-x-4">
           <a
             href="#"
             className="hover:text-red-500 transition-transform transform hover:scale-110"

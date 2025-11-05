@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -13,7 +12,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Update height for sticky offset logic
   useEffect(() => {
     if (navRef.current) {
       const resizeObserver = new ResizeObserver(() => {
@@ -32,28 +30,27 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`flex justify-between items-center px-6 py-2 sticky top-0 z-50 transition-all duration-300
-        ${
-          isDarkPage
-            ? scrolled
-              ? "bg-black/90 backdrop-blur-md shadow-md"
-              : "bg-black/40 backdrop-blur-md"
-            : scrolled
-            ? "bg-white/90 backdrop-blur-md shadow-md"
-            : "bg-white/20 backdrop-blur-md"
-        }`}
+      className={`flex flex-wrap justify-between items-center px-4 md:px-8 py-3 sticky top-0 z-50 transition-all duration-300 ${
+        isDarkPage
+          ? scrolled
+            ? "bg-black/90 backdrop-blur-md shadow-md"
+            : "bg-black/40 backdrop-blur-md"
+          : scrolled
+          ? "bg-white/90 backdrop-blur-md shadow-md"
+          : "bg-white/20 backdrop-blur-md"
+      }`}
     >
       {/* Logo + Brand */}
-      <Link to="/" className="flex items-center space-x-2">
+      <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
         <img
           src={isBulldogsPage ? "/assets/Bulldog.png" : "/assets/logo.png"}
           alt={isBulldogsPage ? "44 Bulldogs FC Logo" : "Ujana na Ujuzi Logo"}
           className={`${
-            isBulldogsPage ? "w-16 md:w-20 lg:w-24" : "w-20 md:w-24 lg:w-28"
+            isBulldogsPage ? "w-14 sm:w-16 md:w-20" : "w-16 sm:w-20 md:w-24"
           } object-contain transition-all duration-300`}
         />
         <span
-          className={`font-bold text-lg md:text-xl transition-colors duration-300 ${
+          className={`font-bold text-sm sm:text-base md:text-lg transition-colors duration-300 ${
             isDarkPage
               ? "text-gray-200"
               : scrolled
@@ -67,7 +64,7 @@ export default function Navbar() {
 
       {/* Navbar Links */}
       <ul
-        className={`flex items-center space-x-6 font-medium text-sm md:text-base transition-colors duration-300 ${
+        className={`flex flex-wrap justify-end items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 font-medium text-xs sm:text-sm md:text-base transition-colors duration-300 ${
           isDarkPage
             ? "text-gray-200"
             : scrolled
@@ -87,26 +84,24 @@ export default function Navbar() {
             Pillars <span className="ml-1">▾</span>
           </button>
           <ul
-            className={`absolute left-0 mt-2 w-48 rounded-lg shadow-lg backdrop-blur-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200
-              ${
-                isDarkPage
-                  ? "bg-gray-900 text-gray-200"
-                  : "bg-white/90 text-gray-800"
-              }
-            `}
+            className={`absolute left-0 mt-2 w-40 sm:w-44 md:w-48 rounded-lg shadow-lg backdrop-blur-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 ${
+              isDarkPage
+                ? "bg-gray-900 text-gray-200"
+                : "bg-white/90 text-gray-800"
+            }`}
           >
             <li>
-              <Link to="/civic" className="block px-4 py-2 hover:bg-red-50">
+              <Link to="/civic" className="block px-3 py-2 hover:bg-red-50">
                 Civic Engagement
               </Link>
             </li>
             <li>
-              <Link to="/mental" className="block px-4 py-2 hover:bg-red-50">
+              <Link to="/mental" className="block px-3 py-2 hover:bg-red-50">
                 Mental Wellbeing
               </Link>
             </li>
             <li>
-              <Link to="/env" className="block px-4 py-2 hover:bg-red-50">
+              <Link to="/env" className="block px-3 py-2 hover:bg-red-50">
                 Climate Action
               </Link>
             </li>
@@ -119,18 +114,16 @@ export default function Navbar() {
             Programmes <span className="ml-1">▾</span>
           </button>
           <ul
-            className={`absolute left-0 mt-2 w-48 rounded-lg shadow-lg backdrop-blur-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200
-              ${
-                isDarkPage
-                  ? "bg-gray-900 text-gray-200"
-                  : "bg-white/90 text-gray-800"
-              }
-            `}
+            className={`absolute left-0 mt-2 w-40 sm:w-44 md:w-48 rounded-lg shadow-lg backdrop-blur-md opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 ${
+              isDarkPage
+                ? "bg-gray-900 text-gray-200"
+                : "bg-white/90 text-gray-800"
+            }`}
           >
             <li>
               <Link
                 to="/bulldogs"
-                className="block px-4 py-2 hover:bg-red-50"
+                className="block px-3 py-2 hover:bg-red-50"
               >
                 44 Bulldogs FC
               </Link>
