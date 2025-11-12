@@ -12,8 +12,6 @@ export default function Bulldogs() {
     "/assets/bulldog18.jpg",
     "/assets/bulldog25.jpg",
     "/assets/bulldog22.jpg",
-
-   
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -21,14 +19,21 @@ export default function Bulldogs() {
   const [merchHeadingTick, setMerchHeadingTick] = useState(0);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selection, setSelection] = useState({
+    name: "",
+    email: "",
+    phone: "",
     size: "",
     color: "",
     quantity: 1,
   });
-  const [phone, setPhone] = useState("");
+  const [orderMessage, setOrderMessage] = useState("");
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+
   const popupRef = useRef(null);
   const jerseySectionRef = useRef(null);
 
+  // Background slideshow
   useEffect(() => {
     const interval = setInterval(
       () => setCurrentImage((prev) => (prev + 1) % images.length),
@@ -66,14 +71,10 @@ export default function Bulldogs() {
     const handleClickOutside = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
         setSelectedItem(null);
-        setSelection({ size: "", color: "", quantity: 1 });
       }
     };
     const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        setSelectedItem(null);
-        setSelection({ size: "", color: "", quantity: 1 });
-      }
+      if (e.key === "Escape") setSelectedItem(null);
     };
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleEsc);
@@ -98,16 +99,6 @@ export default function Bulldogs() {
       </span>
     ));
 
-  const management = [
-    { name: "Murimi Karani", role: "President & Founder", photo: "/assets/raww.jpg" },
-    { name: "Derrick Kubai", role: "1st Vice President", photo: "/assets/kubai.jpg" },
-    { name: "Sofina Merinyo", role: "2nd Vice President", photo: "/assets/sofina.jpg" },
-    { name: "Lawrence Miringu", role: "Team Manager", photo: "/assets/larry.jpg" },
-    { name: "Collins Tiego", role: "Technical Director", photo: "/assets/tiego.jpg" },
-    { name: "Scarlet Wairimu", role: "C.E.O", photo: "/assets/hero2.jpg" },
-    { name: "Lincoln Wambua", role: "Sporting Director", photo: "/assets/lincoln.jpg" },
-  ];
-
   const merch = [
     {
       title: "2025/26 Fan Jersey",
@@ -126,15 +117,96 @@ export default function Bulldogs() {
     },
   ];
 
+  const management = [
+    { name: "Murimi Karani", role: "President & Founder", photo: "/assets/raww.jpg" },
+    { name: "Derrick Kubai", role: "1st Vice President", photo: "/assets/kubai.jpg" },
+    { name: "Sofina Merinyo", role: "2nd Vice President", photo: "/assets/sofina.jpg" },
+    { name: "Lawrence Miringu", role: "Team Manager", photo: "/assets/larry.jpg" },
+    { name: "Collins Tiego", role: "Technical Director", photo: "/assets/tiego.jpg" },
+    { name: "Scarlet Wairimu", role: "C.E.O", photo: "/assets/hero2.jpg" },
+    { name: "Lincoln Wambua", role: "Sporting Director", photo: "/assets/lincoln.jpg" },
+  ];
+
   const getWristbandPrice = () => {
     if (selection.size === "Small") return 150;
     if (selection.size === "Medium" || selection.size === "Large") return 200;
     return 0;
   };
 
+  const handleOrderSubmit = async () => {
+    const { name, email, phone, quantity, size, color } = selection;
+    if (!name || !email || !phone) {
+      setOrderMessage("Please fill in your name, email, and phone number.");
+      setOrderSuccess(false);
+      setShowBanner(true);
+      setTimeout(() => setShowBanner(false), 5000);
+      return;
+    }
+
+    const orderData = {
+      name,
+      email,
+      phone,
+      item: selectedItem.title,
+      quantity,
+      size,
+      color,
+    };
+
+    try {
+      const res = await fetch("http://localhost:5000/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData),
+      });
+
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        data = { success: false, message: "Server returned invalid response." };
+      }
+
+      setOrderMessage(data.message);
+      setOrderSuccess(data.success);
+      setShowBanner(true);
+      setTimeout(() => setShowBanner(false), 5000);
+
+      if (data.success) {
+        setSelectedItem(null);
+        setSelection({
+          name: "",
+          email: "",
+          phone: "",
+          size: "",
+          color: "",
+          quantity: 1,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      setOrderMessage("Order failed. Please try again.");
+      setOrderSuccess(false);
+      setShowBanner(true);
+      setTimeout(() => setShowBanner(false), 5000);
+    }
+  };
+
   return (
     <section className="bg-black text-white font-sans overflow-hidden relative">
-      {/* HERO */}
+
+      {/* Floating Banner */}
+      {showBanner && (
+        <div
+          className={`fixed top-20 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 text-center text-white transition-opacity duration-700 ${
+            orderSuccess ? "bg-green-600" : "bg-red-600"
+          } fade-in-out`}
+        >
+          {orderMessage}
+        </div>
+      )}
+
+      {/* HERO SECTION */}
       <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
         {images.map((img, index) => (
           <img
@@ -148,10 +220,10 @@ export default function Bulldogs() {
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
         <div className="relative z-10 flex flex-col items-center justify-center text-center">
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight flex justify-center flex-wrap animate-bounce">
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight animate-bounce">
             {renderRollingText("We Are The Pack", "glow-blue", tick)}
           </h1>
-          <h2 className="text-xl md:text-2xl font-extrabold mt-2 flex justify-center flex-wrap animate-bounce">
+          <h2 className="text-xl md:text-2xl font-extrabold mt-2 animate-bounce">
             {renderRollingText("Uma Wao!!", "glow-red", tick)}
           </h2>
           <button
@@ -163,58 +235,42 @@ export default function Bulldogs() {
         </div>
       </div>
 
-      {/* STORE */}
-      <div
-        ref={jerseySectionRef}
-        className="fade-in-section py-20 bg-gradient-to-b from-gray-950 via-black to-gray-900 text-center opacity-0"
-      >
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 fade-in-card text-center">
-          <span className="text-blue-400 inline-block">
-            {"44 Bulldogs Store –".split("").map((char, idx) => (
-              <span
-                key={idx + merchHeadingTick}
-                className="inline-block neon-letter"
-                style={{
-                  animation: `fadeInLetter 0.05s forwards`,
-                  animationDelay: `${idx * 0.05 + 2}s`,
-                }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
-          </span>
-          <span className="text-red-500 ml-2 inline-block typewriter-delay">
-            {" Get Your Merch!!"}
-          </span>
-        </h2>
+      {/* STORE SECTION */}
+<div
+  ref={jerseySectionRef}
+  className="fade-in-section py-20 bg-gradient-to-b from-gray-950 via-black to-gray-900 text-center opacity-0"
+>
+  <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-blue-400 typewriter">
+    44 Bulldogs Store – <span className="text-red-500">Get Your Merch!!</span>
+  </h2>
 
-        <p className="text-gray-300 max-w-2xl mx-auto mb-8">
-          Grab your official 44 Bulldogs FC merch! From the new 25/26 fan jersey
-          to limited edition wristbands, we’ve got everything a true supporter
-          needs.
-        </p>
+  <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+    Grab your official 44 Bulldogs FC merch! From the new 25/26 fan jersey
+    to limited edition wristbands, we’ve got everything a true supporter
+    needs.
+  </p>
 
-        <div className="flex flex-wrap justify-center gap-12 max-w-6xl mx-auto">
+
+        <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
           {merch.map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-col bg-gray-900/70 rounded-2xl p-5 shadow-lg hover:scale-105 transition-transform duration-300 fade-in-card slide-in-up items-center w-80 md:w-96 h-[460px]"
+              className="flex flex-col bg-gray-900/70 rounded-2xl p-5 shadow-lg hover:scale-105 transition-transform duration-300 fade-in-card items-center w-72 md:w-96"
             >
-              <div className="w-full h-80 overflow-hidden rounded-2xl mb-4 flex items-start justify-center bg-gray-800 group">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-64 rounded-xl object-cover mb-4"
+              />
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-red-400">
                 {item.title}
               </h3>
-              <p className="text-base md:text-lg mb-4">{item.description}</p>
+              <p className="text-gray-300 text-sm md:text-base mb-4">
+                {item.description}
+              </p>
               <button
                 onClick={() => {
                   setSelectedItem(item);
-                  setSelection({ size: "", color: "", quantity: 1 });
                 }}
                 className="bg-blue-600 hover:bg-red-600 text-white px-6 py-2 rounded-full font-semibold shadow-md transition-all duration-300"
               >
@@ -227,24 +283,51 @@ export default function Bulldogs() {
 
       {/* POPUP */}
       {selectedItem && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex justify-center items-center z-50 p-4">
           <div
             ref={popupRef}
-            className="bg-gray-900/80 border border-gray-700 rounded-2xl p-6 max-w-md w-[90%] shadow-2xl text-center relative"
+            className="bg-gray-900/90 border border-gray-700 rounded-2xl p-6 w-full max-w-md shadow-2xl text-center"
           >
             <img
               src={selectedItem.image}
               alt={selectedItem.title}
-              className="w-40 h-40 mx-auto rounded-xl object-cover mb-4"
+              className="w-32 h-32 mx-auto rounded-xl object-cover mb-4"
             />
             <h3 className="text-2xl font-bold text-blue-400 mb-2">
               {selectedItem.title}
             </h3>
             <p className="text-gray-300 mb-4">{selectedItem.description}</p>
 
-            {/* Quantity */}
-            <div className="flex justify-center items-center gap-3 mb-4">
-              <label className="text-gray-300 font-semibold">Quantity:</label>
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={selection.name}
+              onChange={(e) =>
+                setSelection({ ...selection, name: e.target.value })
+              }
+              className="w-full mb-2 text-center rounded border border-gray-500 bg-gray-800 text-white py-2"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              value={selection.email}
+              onChange={(e) =>
+                setSelection({ ...selection, email: e.target.value })
+              }
+              className="w-full mb-2 text-center rounded border border-gray-500 bg-gray-800 text-white py-2"
+            />
+            <input
+              type="text"
+              placeholder="07XXXXXXXX"
+              value={selection.phone}
+              onChange={(e) =>
+                setSelection({ ...selection, phone: e.target.value })
+              }
+              className="w-full mb-4 text-center rounded border border-gray-500 bg-gray-800 text-white py-2"
+            />
+
+            <div className="mb-4 flex justify-center items-center gap-3">
+              <label className="text-gray-300 font-semibold">Qty:</label>
               <input
                 type="number"
                 min="1"
@@ -259,9 +342,8 @@ export default function Bulldogs() {
               />
             </div>
 
-            {/* Wristband Options */}
             {selectedItem.title.includes("Wristband") && (
-              <div className="mb-4 flex justify-center gap-3">
+              <div className="mb-4 flex justify-center gap-3 flex-wrap">
                 {["Small", "Medium", "Large"].map((size) => {
                   const colors = {
                     Small: ["pink"],
@@ -278,14 +360,14 @@ export default function Bulldogs() {
                             onClick={() =>
                               setSelection({ ...selection, size, color })
                             }
-                            className="w-8 h-8 rounded-full border-2 border-gray-500 transition-transform transform hover:scale-110"
+                            className="w-8 h-8 rounded-full border-2 border-gray-500"
                             style={{
                               backgroundColor: color,
                               opacity:
                                 selection.size === size &&
                                 selection.color === color
                                   ? 1
-                                  : 0.7,
+                                  : 0.6,
                             }}
                           />
                         ))}
@@ -296,64 +378,23 @@ export default function Bulldogs() {
               </div>
             )}
 
-            {/* Total Calculation */}
-            <p className="text-lg text-red-400 font-semibold mb-2">
+            <p className="text-lg text-red-400 font-semibold mb-4">
               Total: Ksh{" "}
               {selectedItem.title.includes("Wristband")
                 ? getWristbandPrice() * selection.quantity
                 : selectedItem.price * selection.quantity}
             </p>
 
-            {/* Phone input */}
-            <div className="mt-4">
-              <input
-                type="text"
-                placeholder="07XXXXXXXX"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full text-center rounded border border-gray-500 bg-gray-800 text-white py-2"
-              />
-            </div>
-
-            {/* Confirm Payment */}
             <button
-              onClick={async () => {
-                if (!phone) return alert("Please enter phone number");
-                let amount = selectedItem.title.includes("Wristband")
-                  ? getWristbandPrice() * selection.quantity
-                  : selectedItem.price * selection.quantity;
-
-                try {
-                  const res = await fetch(
-                    "https://proconviction-viciously-kala.ngrok-free.dev/api/stkpush",
-                    {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        phone,
-                        amount,
-                        item: selectedItem.title,
-                      }),
-                    }
-                  );
-                  const data = await res.json();
-                  console.log(data);
-                  alert(
-                    "Payment request sent! Check your phone to complete the transaction."
-                  );
-                  setSelectedItem(null);
-                } catch (err) {
-                  console.error(err);
-                  alert("Payment failed. Try again.");
-                }
-              }}
-              className="bg-blue-600 hover:bg-red-600 text-white px-6 py-2 rounded-full font-semibold shadow-md transition-all duration-300 mt-4"
+              onClick={handleOrderSubmit}
+              className="bg-blue-600 hover:bg-red-600 text-white px-6 py-2 rounded-full font-semibold shadow-md transition-all duration-300"
             >
-              Confirm Payment
+              Submit Order
             </button>
           </div>
         </div>
       )}
+
 
       {/* MEET THE PACK */}
       <div className="fade-in-section py-16 px-6 bg-gradient-to-b from-gray-950 via-black to-gray-900 opacity-0">
@@ -497,29 +538,53 @@ export default function Bulldogs() {
         </div>
       </div>
 
-      <style>{`
-        .typewriter-delay {
-          overflow: hidden;
-          white-space: nowrap;
-          border-right: 3px solid #ff4d4d;
-          width: 0;
-          animation:
-            typewriter 4s steps(22, end) 2s infinite alternate,
-            blinkCursorTeam 0.8s step-end infinite;
-          animation-delay: 10s, 10s;
+       <style>{`
+        .fade-in-out {
+          animation: fadeInOut 5s ease-in-out forwards;
         }
-        @keyframes typewriter {0% { width: 0; } 40% { width: 15ch; } 60% { width: 15ch; } 100% { width: 0; }}
-        @keyframes blinkCursorTeam {0%,100% {border-color:transparent;}25%{border-color:#ff4d4d;}75%{border-color:#3b82f6;}}
-        @keyframes fadeInLetter {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
-        .fade-in-section {opacity:0;transform:translateY(20px);transition:opacity 1s ease-out, transform 1s ease-out;}
-        .fade-in-visible {opacity:1;transform:translateY(0);}
-        .glow-blue {color:#00f;text-shadow:0 0 10px #00f,0 0 20px #007bff;}
-        .glow-red {color:#ff4d4d;text-shadow:0 0 10px #f00,0 0 20px #ff4d4d;}
-        .rolling-letter {display:inline-block;opacity:0;animation:rollLetter 0.8s ease-out forwards;}
-        @keyframes rollLetter {0%{opacity:0;transform:translateY(40px);}100%{opacity:1;transform:translateY(0);}}
-        .neon-letter {display:inline-block;color:#00f;text-shadow:0 0 10px #00f,0 0 20px #007bff;animation:fadeInLetter 0.8s forwards;}
-        .slide-in-up {animation:slideInUp 0.8s ease-out forwards;}
-        @keyframes slideInUp {0%{transform:translateY(20px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translateY(-10px); }
+          10%, 90% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-10px); }
+        }
+      
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #ff0000;
+  width: 0;
+  animation: typing 4s steps(40, end) infinite alternate, blink 0.8s step-end infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+        .fade-in-section {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .glow-blue { color: #00f; text-shadow: 0 0 10px #00f, 0 0 20px #007bff; }
+        .glow-red { color: #ff4d4d; text-shadow: 0 0 10px #f00, 0 0 20px #ff4d4d; }
       `}</style>
     </section>
   );
