@@ -33,6 +33,12 @@ export default function Bulldogs() {
   const popupRef = useRef(null);
   const jerseySectionRef = useRef(null);
 
+  // Auto-select backend URL
+  const backendURL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000"
+      : "https://ujana-na-ujuzi-backend.vercel.app";
+
   // Background slideshow
   useEffect(() => {
     const interval = setInterval(
@@ -154,8 +160,7 @@ export default function Bulldogs() {
     };
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-      const res = await fetch(`${API_URL}/api/order`, {
+      const res = await fetch(`${backendURL}/api/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
