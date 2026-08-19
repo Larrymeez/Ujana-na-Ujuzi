@@ -194,7 +194,9 @@ export default function Hero() {
 
           </div>
 
-          {/* Main heading */}
+          {/* =================================================
+              MAIN HEADING
+          ================================================== */}
 
           <div
             className={`
@@ -236,7 +238,9 @@ export default function Hero() {
 
           </div>
 
-          {/* Motto */}
+          {/* =================================================
+              MOTTO
+          ================================================== */}
 
           <p
             className={`
@@ -271,11 +275,17 @@ export default function Hero() {
             </span>
           </p>
 
-          {/* CTA */}
+          {/* =================================================
+              CALL TO ACTIONS
+          ================================================== */}
 
           <div
             className={`
               mt-6
+              flex
+              flex-wrap
+              items-center
+              gap-3
               transition-all
               duration-700
               delay-300
@@ -287,15 +297,19 @@ export default function Hero() {
             `}
           >
 
+            {/* =================================================
+                PLAYER REGISTRATION CTA
+            ================================================== */}
+
             <Link
-              to="/contact"
+              to="/bulldogs"
               className="
                 group
                 inline-flex
                 items-center
                 gap-3
                 bg-red-600
-                hover:bg-red-700
+                hover:bg-black
                 text-white
                 px-6
                 py-3
@@ -304,15 +318,18 @@ export default function Hero() {
                 tracking-wide
                 text-xs
                 sm:text-sm
-                transition-colors
+                transition-all
                 duration-300
               "
             >
 
-              Join Us
+              <span>
+                Join the 26/27 Pack
+              </span>
 
               <span
                 className="
+                  text-base
                   transition-transform
                   duration-300
                   group-hover:translate-x-1
@@ -320,6 +337,37 @@ export default function Hero() {
               >
                 →
               </span>
+
+            </Link>
+
+            {/* =================================================
+                GENERAL CONTACT CTA
+            ================================================== */}
+
+            <Link
+              to="/contact"
+              className="
+                inline-flex
+                items-center
+                gap-3
+                border
+                border-white/40
+                hover:border-white
+                hover:bg-white/10
+                text-white
+                px-6
+                py-3
+                font-bold
+                uppercase
+                tracking-wide
+                text-xs
+                sm:text-sm
+                transition-all
+                duration-300
+              "
+            >
+
+              Get Involved
 
             </Link>
 
@@ -331,7 +379,7 @@ export default function Hero() {
 
       {/* =====================================================
           SLIDE INDICATORS
-          Subtle horizontal bars — Bulldogs style
+          Subtle horizontal bars
       ====================================================== */}
 
       <div
