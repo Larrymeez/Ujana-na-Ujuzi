@@ -5,54 +5,245 @@ export default function SupportSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-white py-12 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        {/* Left Image */}
-        <div className="w-full h-full">
-          <img
-            src="/assets/support.jpg"
-            alt="Support our programs"
-            className="w-full h-64 sm:h-80 md:h-full object-cover rounded-xl shadow-lg"
-          />
-        </div>
+    <section className="bg-white text-black py-16 sm:py-20 lg:py-24 px-5 sm:px-8">
 
-        {/* Right Text + CTA */}
-        <div className="flex flex-col justify-center gap-5 text-center md:text-left">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600">
-            Support Our Programmes
-          </h2>
-          <p className="text-gray-800 text-base sm:text-lg md:text-xl leading-relaxed">
-            Join our mission to empower communities through impactful workshops,
-            youth programmes, and civic engagement activities. Every contribution
-            helps us reach more people and create lasting change.
-          </p>
-          <p className="text-gray-800 text-base sm:text-lg md:text-xl leading-relaxed">
-            By supporting our initiatives, you are helping young people, families,
-            and local communities gain access to education, mental health resources,
-            and environmental awareness programmes.
-          </p>
-          <p className="text-gray-800 text-base sm:text-lg md:text-xl leading-relaxed">
-            Explore our merchandise or reach out to learn how you can get involved
-            and make a tangible difference today.
-          </p>
+      <div className="max-w-7xl mx-auto">
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mt-4">
-            <button
-              onClick={() => navigate("/bulldogs")}
-              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-300"
-            >
-              Explore Merchandise
-            </button>
-            <button
-              onClick={() => navigate("/contact")}
-              className="bg-white border-2 border-red-600 hover:bg-red-50 text-red-600 font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-300"
-            >
-              Contact Us
-            </button>
+        {/* Section heading */}
+        <div className="mb-10 lg:mb-14">
+
+          <div className="flex items-center gap-3">
+
+            <span className="w-8 h-[2px] bg-red-600" />
+
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] text-gray-500">
+              Get Involved
+            </span>
+
           </div>
+
         </div>
+
+
+        {/* =====================================================
+            DESKTOP TWO-COLUMN LAYOUT
+            LEFT  = IMAGE
+            RIGHT = CONTENT
+        ====================================================== */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+
+          {/* =====================================================
+              LEFT — IMAGE
+          ====================================================== */}
+
+          <div className="w-full">
+
+            <div className="relative">
+
+              {/* Decorative offset border */}
+              <div
+                className="
+                  absolute
+                  -bottom-3
+                  -right-3
+                  sm:-bottom-4
+                  sm:-right-4
+                  w-full
+                  h-full
+                  border
+                  border-red-600/40
+                "
+              />
+
+              {/* Image */}
+              <div className="relative z-10 w-full overflow-hidden bg-gray-100">
+
+                <img
+                  src="/assets/support.jpg"
+                  alt="Supporting Ujana na Ujuzi programmes"
+                  className="
+                    block
+                    w-full
+                    h-auto
+                    aspect-[4/3]
+                    object-cover
+                    object-center
+                    transition-transform
+                    duration-700
+                    hover:scale-[1.03]
+                  "
+                />
+
+                {/* Bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+
+                {/* Image caption */}
+                <div className="absolute bottom-5 left-5 sm:bottom-7 sm:left-7">
+
+                  <div className="flex items-center gap-3">
+
+                    <span className="w-7 h-[2px] bg-red-600" />
+
+                    <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                      Community • Action • Change
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* =====================================================
+              RIGHT — CONTENT
+          ====================================================== */}
+
+          <div className="w-full">
+
+            <div className="max-w-xl">
+
+              {/* Heading */}
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] text-gray-900">
+
+                Support Our{" "}
+
+                <span className="text-red-600">
+                  Programmes
+                </span>
+
+              </h2>
+
+
+              {/* Accent line */}
+              <div className="mt-5 w-14 h-[3px] bg-red-600" />
+
+
+              {/* Main paragraph */}
+              <p className="mt-7 text-gray-700 text-base sm:text-lg leading-relaxed">
+
+                Our work is built around people. Through youth programmes,
+                community workshops and civic engagement, we create spaces
+                where people can learn, participate and make a difference.
+
+              </p>
+
+
+              {/* Second paragraph */}
+              <p className="mt-5 text-gray-600 text-base sm:text-lg leading-relaxed">
+
+                Your support helps us reach more young people and communities
+                with practical education, mental wellbeing initiatives and
+                environmental programmes.
+
+              </p>
+
+
+              {/* Highlight */}
+              <div className="mt-8 border-l-2 border-red-600 pl-5">
+
+                <p className="text-sm sm:text-base font-semibold text-gray-900">
+                  Every contribution helps us do more.
+                </p>
+
+                <p className="mt-2 text-sm sm:text-base text-gray-500 leading-relaxed">
+
+                  Whether you choose to support our programmes, explore the
+                  Bulldogs initiative or simply connect with us, you're
+                  helping strengthen the work we do within our communities.
+
+                </p>
+
+              </div>
+
+
+              {/* =====================================================
+                  BUTTONS
+              ====================================================== */}
+
+              <div className="mt-9 flex flex-col sm:flex-row gap-3">
+
+
+                {/* Bulldogs */}
+                <button
+                  onClick={() => navigate("/bulldogs")}
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    justify-center
+                    gap-3
+                    bg-red-600
+                    hover:bg-black
+                    text-white
+                    font-semibold
+                    px-6
+                    py-3.5
+                    transition-all
+                    duration-300
+                  "
+                >
+
+                  <span>
+                    Explore Bulldogs
+                  </span>
+
+                  <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+
+                </button>
+
+
+                {/* Contact */}
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    justify-center
+                    gap-3
+                    bg-white
+                    border
+                    border-gray-300
+                    hover:border-red-600
+                    hover:text-red-600
+                    text-gray-800
+                    font-semibold
+                    px-6
+                    py-3.5
+                    transition-all
+                    duration-300
+                  "
+                >
+
+                  <span>
+                    Contact Us
+                  </span>
+
+                  <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
   );
 }
